@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
             entries.length,
             (index) => GestureDetector(
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => Result(
