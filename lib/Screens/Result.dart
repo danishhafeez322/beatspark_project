@@ -1,5 +1,7 @@
+import 'package:b_project/Screens/HomePage.dart';
 import 'package:b_project/main.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class Result extends StatefulWidget {
   final int result;
@@ -17,6 +19,16 @@ class _ResultState extends State<Result> {
     'KEY',
     '  DOMINANT\nINSTRUMENT',
   ];
+
+  // Future saveResult() async {
+  //   final box = Hive.box<Results>('results');
+  //   final result = Results()
+  //     ..category = entries[widget.result]
+  //     ..result = widget.result.toString()
+  //     ..date = DateTime.now();
+  //   await box.add(result);
+  // }
+
   @override
   void initState() {
     setState(() {});
@@ -173,7 +185,7 @@ class _ResultState extends State<Result> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MyHomePage()));
+                                  builder: (context) => const HomePage()));
                         },
                         style: ElevatedButton.styleFrom(
                             side: const BorderSide(
