@@ -1,11 +1,13 @@
 import 'package:b_project/Screens/HomePage.dart';
+import 'package:b_project/Widgets/AppDrawer.dart';
 import 'package:b_project/main.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class Result extends StatefulWidget {
   final int result;
-  const Result({super.key, required this.result});
+  final String text;
+  const Result({super.key, required this.result, required this.text});
 
   @override
   State<Result> createState() => _ResultState();
@@ -42,34 +44,7 @@ class _ResultState extends State<Result> {
         backgroundColor: const Color(0xff8758FF),
         elevation: 0.0,
       ),
-      drawer: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
-            ),
-            ListTile(
-              title: const Text('Item 1'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-            ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const AppDrawer(),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
@@ -133,13 +108,22 @@ class _ResultState extends State<Result> {
                                 ),
                               ),
                             ),
-                            const Text(
-                              'SPARK',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18),
-                            ),
+                            index != widget.result
+                                ? const Text(
+                                    'SPARK',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )
+                                : Text(
+                                    widget.text,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12),
+                                  )
                           ],
                         ),
                       ),
@@ -205,16 +189,6 @@ class _ResultState extends State<Result> {
                 ],
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 10),
-            //   child: ElevatedButton.icon(
-            //     onPressed: () {},
-            //     icon: const Icon(Icons.repeat_outlined),
-            //     label: const Text('Repeat'),
-            //     style: ElevatedButton.styleFrom(
-            //         backgroundColor: const Color(0xff5CB8E4)),
-            //   ),
-            // )
           ],
         ),
       ),
