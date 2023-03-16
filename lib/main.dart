@@ -51,61 +51,6 @@ class _MyHomePageState extends State<MyHomePage> {
     'KEY',
     '  DOMINANT\nINSTRUMENT',
   ];
-  final List<String> dominantInstruments = <String>[
-    'FLUTE',
-    'PADS',
-    'SYNTHS',
-    'PIANO',
-    'GUITAR',
-    'BRASS',
-    'STRINGS',
-    'PLUCKS',
-  ];
-  final List<String> tempo = <String>[
-    'SLOW',
-    'MODERATELY SLOW',
-    'MID-TEMPO',
-    'MODERATELY FAST',
-    'FAST',
-  ];
-  final List<String> genre = <String>[
-    'PLUG',
-    'DRILL',
-    'BOOM-BAP',
-    'LOFI R&B',
-    'LOFI HIP-HOP',
-    'BAY AREA',
-    'TRAP',
-    'DANCEHALL',
-  ];
-  final List<String> key = <String>[
-    'C',
-    'C#',
-    'D',
-    'D#',
-    'E',
-    'F',
-    'F#',
-    'G',
-    'G#',
-    'A',
-    'A#',
-    'B',
-  ];
-  final List<String> mood = <String>[
-    'HAPPY',
-    'INSPIRATIONAL',
-    'SAD',
-    'PARTY',
-    'SEXY',
-    'STONED',
-    'DARK',
-    'CONFIDENT',
-    'CHILL',
-    'ANGRY',
-    'ROMANTIC',
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
