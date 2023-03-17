@@ -2,8 +2,6 @@ import 'dart:math';
 
 import 'package:b_project/Widgets/AppDrawer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import 'Result.dart';
 
@@ -93,7 +91,7 @@ class _HomePageState extends State<HomePage> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/Splash.png"), fit: BoxFit.cover),
+              image: AssetImage("assets/background.png"), fit: BoxFit.cover),
         ),
         child: Wrap(
           runSpacing: 2,

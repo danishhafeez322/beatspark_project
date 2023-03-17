@@ -1,6 +1,9 @@
+import 'package:b_project/Screens/SaveResult.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+
+import '../Screens/TermAndConditions.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -17,7 +20,7 @@ class _AppDrawerState extends State<AppDrawer> {
       child: Column(
         children: [
           Padding(
-              padding: const EdgeInsets.only(top: 15, right: 15),
+              padding: const EdgeInsets.only(top: 20, right: 15),
               child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 CircleAvatar(
                   backgroundColor: const Color(0xff8758FF),
@@ -32,28 +35,33 @@ class _AppDrawerState extends State<AppDrawer> {
                   ),
                 ),
               ])),
-          ListTile(
-            leading: const Icon(
-              Icons.help,
-              color: Colors.blueAccent,
-            ),
-            title: const Text('Help'),
-            onTap: () {},
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 35, right: 35),
-            child: Divider(
-              color: Colors.black45,
-              thickness: 1,
-            ),
-          ),
+          // ListTile(
+          //   leading: const Icon(
+          //     Icons.help,
+          //     color: Colors.blueAccent,
+          //   ),
+          //   title: const Text('Help'),
+          //   onTap: () {},
+          // ),
+          // const Padding(
+          //   padding: EdgeInsets.only(left: 35, right: 35),
+          //   child: Divider(
+          //     color: Colors.black45,
+          //     thickness: 1,
+          //   ),
+          // ),
           ListTile(
             leading: const Icon(
               Icons.message,
               color: Colors.blueAccent,
             ),
             title: const Text('Term & Conditions'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const TermAndCondition())));
+            },
           ),
           const Padding(
             padding: EdgeInsets.only(left: 35, right: 35),
@@ -68,7 +76,12 @@ class _AppDrawerState extends State<AppDrawer> {
               color: Colors.blueAccent,
             ),
             title: const Text('Save Results'),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => const SaveResult())));
+            },
           ),
           const Padding(
             padding: EdgeInsets.only(left: 35, right: 35),

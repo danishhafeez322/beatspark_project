@@ -2,10 +2,11 @@ import 'package:b_project/Screens/HomePage.dart';
 import 'package:b_project/Widgets/AppDrawer.dart';
 import 'package:b_project/main.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 
+import '../Widgets/Boxes.dart';
 import '../model/results.dart';
-import 'package:hive/hive.dart';
 
 class Result extends StatefulWidget {
   final int result;
@@ -17,22 +18,38 @@ class Result extends StatefulWidget {
 }
 
 class _ResultState extends State<Result> {
+  int count = 0;
   final List<String> entries = <String>[
-    'TEMPO',
-    'MOOD',
     'GENRE',
+    'MOOD',
+    'TEMPO',
+    'KEY',
+    'DOMINANT INSTRUMENT',
+  ];
+  final List<String> categories = <String>[
+    'GENRE',
+    'MOOD',
+    'TEMPO',
     'KEY',
     '  DOMINANT\nINSTRUMENT',
   ];
 
   Future saveResult() async {
-    final box = Hive.box<Results>('results');
+    // final box = Hive.box<Results>('results');
     final result = Results()
-      ..category = 'TEMPO'
-      ..result = widget.result.toString()
+      ..category = entries[widget.result]
+      ..result = widget.text
       ..date = DateTime.now();
-    await box.add(result);
+    // await box.add(result);
+    final box = Boxes.getResults();
+    box.add(result);
   }
+
+  // @override
+  // void dispose() {
+  //   Hive.close();
+  //   super.dispose();
+  // }
 
   @override
   void initState() {
@@ -53,7 +70,7 @@ class _ResultState extends State<Result> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/Splash.png"), fit: BoxFit.cover)),
+                image: AssetImage("assets/background.png"), fit: BoxFit.cover)),
         child: Column(
           children: [
             Wrap(
@@ -69,7 +86,7 @@ class _ResultState extends State<Result> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 8.0, top: 15),
                         child: Text(
-                          entries[index],
+                          categories[index],
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -146,7 +163,31 @@ class _ResultState extends State<Result> {
                       height: 50,
                       width: 150,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            count++;
+                            if (count == 1) {
+                              Fluttertoast.showToast(
+                                  msg: 'Result Saved',
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.white,
+                                  textColor: Colors.black,
+                                  fontSize: 16.0);
+                              saveResult();
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: 'Result Already Saved',
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.white,
+                                  textColor: Colors.black,
+                                  fontSize: 16.0);
+                            }
+                          });
+                        },
                         style: ElevatedButton.styleFrom(
                             side: const BorderSide(
                                 width: 1.0, color: Colors.white),
