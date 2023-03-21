@@ -17,20 +17,17 @@ class ResultsAdapter extends TypeAdapter<Results> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Results()
-      ..category = fields[0] as String
-      ..result = fields[1] as String
-      ..date = fields[2] as DateTime;
+      ..result = (fields[0] as List).cast<String>()
+      ..date = fields[1] as DateTime;
   }
 
   @override
   void write(BinaryWriter writer, Results obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.category)
-      ..writeByte(1)
-      ..write(obj.result)
       ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.result)
+      ..writeByte(1)
       ..write(obj.date);
   }
 

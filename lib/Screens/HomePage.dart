@@ -134,13 +134,13 @@ class _HomePageState extends State<HomePage> {
 
                 // print(list[index].length);
 
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Result(
-                              result: index,
-                              text: randomText,
-                            )));
+                // Navigator.pushReplacement(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => Result(
+                //               result: index,
+                //               text: randomText,
+                //             )));
               },
               child: Column(
                 children: [

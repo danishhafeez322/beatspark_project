@@ -55,7 +55,8 @@ class _AppDrawerState extends State<AppDrawer> {
               Icons.message,
               color: Colors.blueAccent,
             ),
-            title: const Text('Term & Conditions'),
+            title: const Text('Term & Conditions',
+                style: TextStyle(fontFamily: 'Poppins')),
             onTap: () {
               Navigator.push(
                   context,
@@ -75,7 +76,11 @@ class _AppDrawerState extends State<AppDrawer> {
               Icons.file_open_rounded,
               color: Colors.blueAccent,
             ),
-            title: const Text('Save Results'),
+            title: const Text(
+              'Save Results',
+              style: TextStyle(
+                  fontFamily: 'Poppins-Regular', fontWeight: FontWeight.bold),
+            ),
             onTap: () {
               Navigator.push(
                   context,

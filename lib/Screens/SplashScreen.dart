@@ -24,7 +24,7 @@ class SplashPage extends StatelessWidget {
         // color: Colors.white,
         alignment: Alignment.center,
         child: Image.asset(
-          "assets/B.png",
+          "assets/Frame.png",
           height: 160,
           width: 170,
         ),

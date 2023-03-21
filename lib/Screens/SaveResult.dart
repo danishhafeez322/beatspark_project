@@ -1,5 +1,6 @@
 import 'package:b_project/model/results.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:intl/intl.dart';
 
@@ -13,6 +14,19 @@ class SaveResult extends StatefulWidget {
 }
 
 class _SaveResultState extends State<SaveResult> {
+  final List<String> entries = <String>[
+    'GENRE',
+    'MOOD',
+    'TEMPO',
+    'KEY',
+    'DOMINANT\nINSTRUMENT',
+  ];
+  @override
+  void initState() {
+    setState(() {});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +35,8 @@ class _SaveResultState extends State<SaveResult> {
         elevation: 0.0,
         title: const Text(
           'Save Result',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontFamily: 'Poppins', fontSize: 24),
           textAlign: TextAlign.center,
         ),
       ),
@@ -36,7 +51,7 @@ class _SaveResultState extends State<SaveResult> {
           child: ValueListenableBuilder<Box<Results>>(
             valueListenable: Boxes.getResults().listenable(),
             builder: (context, box, _) {
-              final results = box.values.toList().cast<Results>();
+              var results = box.values.toList().cast<Results>();
               return buildContent(results);
             },
           ),
@@ -50,7 +65,10 @@ class _SaveResultState extends State<SaveResult> {
       return const Center(
         child: Text(
           'No Results yet!',
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(
+            fontSize: 24,
+            fontFamily: 'Poppins',
+          ),
         ),
       );
     } else {
@@ -62,45 +80,102 @@ class _SaveResultState extends State<SaveResult> {
               padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
               itemCount: results.length,
               itemBuilder: (BuildContext context, int index) {
-                final result = results[index];
+                var result = results[index];
+                final date = DateFormat.yMMMd().format(result.date);
 
-                return buildResult(context, result);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Slidable(
+                    endActionPane: ActionPane(
+                        motion: BehindMotion(),
+                        extentRatio: 0.3,
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) {
+                              Boxes.getResults().deleteAt(index);
+                            },
+                            label: 'Delete',
+                            icon: Icons.delete,
+                            backgroundColor: Colors.red,
+                          )
+                        ]),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.20,
+                      // width: MediaQuery.of(context).size.width * 0.8,
+
+                      padding: const EdgeInsets.only(top: 10, left: 5),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffF5F5F5),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.28,
+                            child: Column(children: [
+                              ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: result.result.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return result.result[index] != ''
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Text(
+                                            entries[index],
+                                            style: const TextStyle(
+                                                fontFamily: 'Poppins',
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      : Container();
+                                },
+                              ),
+                            ]),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.28,
+                            child: Column(children: [
+                              ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: result.result.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return result.result[index] != ''
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Text(
+                                            result.result[index],
+                                            style: const TextStyle(
+                                                fontSize: 11,
+                                                fontFamily: 'Poppins',
+                                                color: Colors.blue),
+                                          ),
+                                        )
+                                      : Container();
+                                },
+                              ),
+                            ]),
+                          ),
+                          Text(
+                            date,
+                            style: const TextStyle(color: Colors.black54),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+
+                // return buildResult(context, result);
               },
             ),
           ),
         ],
       );
     }
-  }
-
-  Widget buildResult(
-    BuildContext context,
-    Results result,
-  ) {
-    final date = DateFormat.yMMMd().format(result.date);
-
-    return Card(
-      color: Colors.white,
-      child: ExpansionTile(
-        tilePadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
-        title: Text(
-          result.category,
-          maxLines: 2,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-        ),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Text(
-            result.result,
-            style: const TextStyle(color: Colors.blueAccent, fontSize: 14),
-          ),
-        ),
-        trailing: Text(
-          date,
-          style: const TextStyle(
-              color: Colors.black38, fontWeight: FontWeight.bold, fontSize: 12),
-        ),
-      ),
-    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:b_project/Screens/HomePage.dart';
+import 'package:b_project/Screens/Result.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashPage(
         duration: 2,
-        gotoPage: const HomePage(),
+        gotoPage: const Result(),
       ),
     );
   }

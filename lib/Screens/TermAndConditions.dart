@@ -45,6 +45,7 @@ class TermAndCondition extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 19,
+                                  fontFamily: 'Poppins',
                                   color: Color(0xff8758FF)),
                             ),
                             SizedBox(height: 10),
@@ -52,32 +53,44 @@ class TermAndCondition extends StatelessWidget {
                               '1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
                               style: TextStyle(
                                 fontSize: 14,
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Poppins-Regular',
                               ),
                               textAlign: TextAlign.justify,
                             ),
                             SizedBox(height: 10),
                             Text(
                               '2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Poppins-Regular',
+                              ),
                               textAlign: TextAlign.justify,
                             ),
                             SizedBox(height: 10),
                             Text(
                               '3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Poppins-Regular',
+                              ),
                               textAlign: TextAlign.justify,
                             ),
                             SizedBox(height: 10),
                             Text(
                               '4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Poppins-Regular',
+                              ),
                               textAlign: TextAlign.justify,
                             ),
                             SizedBox(height: 10),
                             Text(
                               '5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'Poppins-Regular',
+                              ),
                               textAlign: TextAlign.justify,
                             ),
                           ],
