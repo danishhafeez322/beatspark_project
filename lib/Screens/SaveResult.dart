@@ -82,6 +82,7 @@ class _SaveResultState extends State<SaveResult> {
               itemBuilder: (BuildContext context, int index) {
                 var result = results[index];
                 final date = DateFormat.yMMMd().format(result.date);
+                final time = DateFormat('hh:mm a').format(result.date);
 
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -160,9 +161,21 @@ class _SaveResultState extends State<SaveResult> {
                               ),
                             ]),
                           ),
-                          Text(
-                            date,
-                            style: const TextStyle(color: Colors.black54),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 28.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  date,
+                                  style: const TextStyle(color: Colors.black54),
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  time,
+                                  style: const TextStyle(color: Colors.black54),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
